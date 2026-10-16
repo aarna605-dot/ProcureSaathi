@@ -48,6 +48,7 @@ This document maintains an accurate, chronological record of all architectural d
 - **Developer Experience & Tooling**:
   - Created `run_dev.bat` and `run_dev.ps1` for 1-click local development launching both services simultaneously.
   - Created `README.md` with full project pitch, problem statement, workflow diagrams, and setup instructions.
+  - Removed `.env.example` from version control and updated `.gitignore` to prevent tracking any environment template files.
 
 ### [v0.1.0] - 2026-10-17
 #### Initialized
