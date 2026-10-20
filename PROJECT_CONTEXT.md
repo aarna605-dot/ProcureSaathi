@@ -160,19 +160,24 @@ ProcureSaathi/
 │   └── tests/                  # Backend unit & integration tests
 │
 └── frontend/                   # React + Vite Frontend Dashboard
-    ├── index.html              # HTML shell with Google Fonts
+    ├── index.html              # Clean HTML shell with Inter & Plus Jakarta Sans typography
     ├── package.json            # NPM dependencies & scripts
     ├── vite.config.js          # Vite configuration & backend proxy
     └── src/
         ├── main.jsx            # React root mount
-        ├── App.jsx             # Main dashboard container & state flow
-        ├── index.css           # Design system tokens, glassmorphism, animations
+        ├── App.jsx             # Main dashboard container, story movie launcher, state flow
+        ├── App.css             # Layout utilities & visual accents
+        ├── index.css           # Executive monochrome minimalist design system
         ├── components/
-        │   ├── Header.jsx           # App bar, live mode toggle, API key modal
-        │   ├── RequirementForm.jsx  # Natural language + structured input form
-        │   ├── AgentTelemetry.jsx   # Live TinyFish agent activity stepper
-        │   ├── ComparisonMatrix.jsx # Ranked supplier comparison cards & table
-        │   ├── CostBreakdownModal.jsx# True Landed Cost transparency drawer
+        │   ├── Header.jsx           # App bar, live mode toggle, movie toggle, settings launcher
+        │   ├── RequirementForm.jsx  # Natural language prompt parser + structured presets form
+        │   ├── AgentTelemetry.jsx   # Live TinyFish agent activity stepper & radar
+        │   ├── ComparisonMatrix.jsx # 3D rotary dial showcase, ranked cards, resale profit simulator
+        │   ├── Hero3DParcel.jsx     # Isometric 3D logistics consignment animation
+        │   ├── StickFigureStoryMovie.jsx # 2D minimalist vector story movie & playback scrubber
+        │   ├── NegotiationModal.jsx # Strategic B2B counter-offer proposal generator (WhatsApp RFQ)
+        │   ├── CostBreakdownModal.jsx# True Landed Cost transparency drawer & evidence audit
+        │   ├── HowItWorksModal.jsx  # 4-step procurement copilot workflow explainer
         │   ├── RFQModal.jsx         # 1-click WhatsApp/Email inquiry modal
         │   └── SettingsModal.jsx    # TinyFish API key configuration modal
         └── services/

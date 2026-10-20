@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { X, Key, Shield, ExternalLink, Save, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Key, ExternalLink, Save, CheckCircle } from 'lucide-react';
 
 export default function SettingsModal({ isOpen, onClose, currentApiKey, onSaveApiKey }) {
   const [apiKey, setApiKey] = useState(currentApiKey || '');
+  const [prevApiKey, setPrevApiKey] = useState(currentApiKey);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  useEffect(() => {
+  if (currentApiKey !== prevApiKey) {
+    setPrevApiKey(currentApiKey);
     setApiKey(currentApiKey || '');
-  }, [currentApiKey]);
+  }
 
   if (!isOpen) return null;
 
@@ -26,10 +28,10 @@ export default function SettingsModal({ isOpen, onClose, currentApiKey, onSaveAp
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div>
-            <span style={{ fontSize: '0.75rem', color: '#818cf8', textTransform: 'uppercase', fontWeight: 700 }}>
+            <span style={{ fontSize: '0.74rem', color: '#4f46e5', textTransform: 'uppercase', fontWeight: 800 }}>
               Configuration
             </span>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '0.2rem' }}>
               TinyFish Web Agent Settings
             </h3>
           </div>
@@ -40,7 +42,7 @@ export default function SettingsModal({ isOpen, onClose, currentApiKey, onSaveAp
 
         <form onSubmit={handleSave}>
           <div style={{ marginBottom: '1.25rem' }}>
-            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
               TinyFish API Key
             </label>
             <div style={{ position: 'relative' }}>
@@ -49,25 +51,25 @@ export default function SettingsModal({ isOpen, onClose, currentApiKey, onSaveAp
                 type="password"
                 className="field-input"
                 style={{ paddingLeft: '2.5rem' }}
-                placeholder="Enter your TinyFish key (optional for hackathon demo)"
+                placeholder="Enter your TinyFish key (optional for demo)"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
               />
               <Key size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
             </div>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.4rem', lineHeight: 1.4 }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.45rem', lineHeight: 1.45 }}>
               ProcureSaathi connects directly to <code>api.search.tinyfish.ai</code> and <code>api.fetch.tinyfish.ai</code>. If empty, the system runs in high-fidelity B2B simulation mode so demos never break.
             </p>
           </div>
 
-          <div style={{ padding: '0.85rem', background: 'rgba(99, 102, 241, 0.08)', borderRadius: '8px', border: '1px solid rgba(99, 102, 241, 0.2)', marginBottom: '1.5rem', fontSize: '0.8rem', color: '#c7d2fe' }}>
+          <div style={{ padding: '0.85rem 1rem', background: '#eef2ff', borderRadius: '12px', border: '1px solid #c7d2fe', marginBottom: '1.5rem', fontSize: '0.82rem', color: '#3730a3' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span>Need a TinyFish developer key?</span>
+              <span style={{ fontWeight: 600 }}>Need a TinyFish developer key?</span>
               <a
                 href="https://agent.tinyfish.ai/api-keys"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: '#818cf8', fontWeight: 600 }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: '#4f46e5', fontWeight: 700 }}
               >
                 <span>Get Free Key</span>
                 <ExternalLink size={12} />

@@ -18,10 +18,35 @@ This document maintains an accurate, chronological record of all architectural d
 | **M8: Live Agent Telemetry Visualizer**| Step-by-step display of web agent scraping & calculation progress | ✅ Complete |
 | **M9: Comparison Matrix & Cost Modal**| Ranked cards, evidence drawer, interactive quantity recalculation | ✅ Complete |
 | **M10: End-to-End Verification** | Real testing with restaurant packaging case study (5,000 containers) | ✅ Complete |
+| **M11: Monochrome Minimalist UI & Story Movie** | Studio-grade minimalist monochrome aesthetic, 2D stick-figure movie, 3D rotary dial, resale simulator | ✅ Complete |
 
 ---
 
 ## 📝 Change Log
+
+### [v1.1.0] - 2026-10-20
+#### Added
+- **Monochrome Minimalist Design System**:
+  - Re-architected typography and styling to an executive monochrome aesthetic using Inter and Plus Jakarta Sans.
+  - Eliminated harsh borders, dark clutter, and color overload in favor of clean high-contrast black/white ink palettes, micro-borders, and tactile interaction feedback.
+- **Interactive 2D Minimalist Stick-Figure Story Movie (`StickFigureStoryMovie.jsx`)**:
+  - Built an animated visual narrative illustrating the plight of cloud kitchen and restaurant owners battling hidden GST surcharges, fake low-unit pricing traps, and delivery delays.
+  - Features real-time SVG vector rendering, dynamic stage transitions, audio-free visual pacing, scrubbable playback controls, and 1-click skip-to-solution actions.
+- **3D Rotary Dial Showcase (`ComparisonMatrix.jsx`)**:
+  - Implemented interactive 3D circular rotary dial displaying candidate supplier proposals in a smooth cylindrical carousel.
+  - Full touch/click rotation controls, unclipped container boundaries, dynamic perspective depth scaling, and direct card selection.
+- **Retail Margin & Resale Profit Simulator**:
+  - Integrated direct margin calculation tool inside the supplier comparison matrix.
+  - Allows merchants and restaurant owners to input target consumer selling prices, computing real-time unit margins, total gross profits, break-even unit volumes, and profit multipliers across each supplier's true landed cost.
+- **Interactive 3D Parcel Visualizer (`Hero3DParcel.jsx`)**:
+  - Implemented an isometric 3D delivery parcel animation in the hero banner showcasing verified consignment status and real-time logistics readiness.
+- **B2B Counter-Offer Negotiation Generator (`NegotiationModal.jsx`)**:
+  - Built automated strategic counter-offer drafter with custom concession levers (payment within 48h, non-urgent delivery window, recurring order commitment).
+  - Generates polished B2B negotiation copy ready for 1-click WhatsApp dispatch.
+- **Exploratory Modals & Architectural Hardening**:
+  - Added `HowItWorksModal.jsx` providing intuitive 4-step workflow guidance.
+  - Upgraded `RequirementForm.jsx` with instant intent extraction across product category, target quantity, budget ceiling, and delivery lead times.
+  - Updated `frontend/.gitignore` to strictly isolate local crawler simulation files (`src/services/clientSimulation.js`).
 
 ### [v1.0.0] - 2026-10-17
 #### Added

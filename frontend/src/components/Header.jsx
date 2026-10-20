@@ -1,41 +1,76 @@
 import React from 'react';
-import { Sparkles, Sliders, ShieldCheck, Globe, Zap } from 'lucide-react';
+import { Sparkles, Sliders, Globe, HelpCircle, Film } from 'lucide-react';
 
-export default function Header({ onOpenSettings, executionMode, isTinyFishConfigured }) {
+export default function Header({ onOpenSettings, onOpenExplainer, onOpenStory, executionMode, isTinyFishConfigured }) {
   return (
     <header className="app-header">
       <div className="brand-section">
         <div className="brand-logo-icon">
-          <Sparkles size={24} />
+          <Sparkles size={20} />
         </div>
         <div>
           <div className="brand-name">
             ProcureSaathi
-            <span style={{ fontSize: '0.75rem', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', padding: '0.15rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-              AI Copilot
+            <span style={{ 
+              fontSize: '0.7rem', 
+              background: '#f3f4f6', 
+              color: '#374151', 
+              padding: '0.2rem 0.65rem', 
+              borderRadius: '9999px', 
+              border: '1px solid #e5e7eb', 
+              fontWeight: 600,
+              letterSpacing: '0.02em'
+            }}>
+              प्रोक्योर साथी
             </span>
           </div>
           <div className="brand-tagline">
-            Autonomous B2B Sourcing & Verified Landed Cost Intelligence
+            Transparent wholesale raw materials & packaging procurement
           </div>
         </div>
       </div>
 
       <div className="header-badges">
+        {onOpenStory && (
+          <button
+            type="button"
+            className="btn-icon-subtle"
+            onClick={onOpenStory}
+            title="Watch the cinematic origin story video"
+            style={{ fontWeight: 600 }}
+          >
+            <Film size={14} color="#111827" />
+            <span>Origin Story</span>
+          </button>
+        )}
+
+        {onOpenExplainer && (
+          <button
+            type="button"
+            className="btn-icon-subtle"
+            onClick={onOpenExplainer}
+            title="Read intelligence guide on deceptive pricing and true landed costs"
+          >
+            <HelpCircle size={14} color="var(--bg-dark-forest)" />
+            <span>How it works</span>
+          </button>
+        )}
+
         <div className="tinyfish-badge" title="TinyFish Web Operating Platform for AI Agents">
           <span className="dot"></span>
-          <Globe size={14} />
-          <span>TinyFish Web Agent: {executionMode === 'tinyfish_live' ? 'Live Mode' : 'Connected'}</span>
+          <Globe size={13} />
+          <span>TinyFish: {executionMode === 'tinyfish_live' ? 'Live Agent' : (isTinyFishConfigured ? 'Active' : 'Connected')}</span>
         </div>
 
         <button 
           id="btn-settings"
+          type="button"
           className="btn-icon-subtle" 
           onClick={onOpenSettings}
           title="Configure TinyFish API Key and Agent Settings"
         >
-          <Sliders size={15} />
-          <span>Agent Settings</span>
+          <Sliders size={14} />
+          <span>Settings</span>
         </button>
       </div>
     </header>

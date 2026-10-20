@@ -6,8 +6,12 @@ import ComparisonMatrix from './components/ComparisonMatrix';
 import CostBreakdownModal from './components/CostBreakdownModal';
 import RFQModal from './components/RFQModal';
 import SettingsModal from './components/SettingsModal';
-import { searchProcurement, recalculateCosts, checkBackendHealth } from './services/api';
-import { Sparkles, ShieldCheck, Zap, AlertCircle } from 'lucide-react';
+import HowItWorksModal from './components/HowItWorksModal';
+import Hero3DParcel from './components/Hero3DParcel';
+import StickFigureStoryMovie from './components/StickFigureStoryMovie';
+import { searchProcurement, recalculateCosts } from './services/api';
+import { AlertCircle } from 'lucide-react';
+import './App.css';
 
 export default function App() {
   const [procurementData, setProcurementData] = useState(null);
@@ -18,6 +22,8 @@ export default function App() {
   const [inspectOffer, setInspectOffer] = useState(null);
   const [rfqOffer, setRfqOffer] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isExplainerOpen, setIsExplainerOpen] = useState(false);
+  const [showStory, setShowStory] = useState(true);
 
   // TinyFish API key persisted in localStorage
   const [tinyFishApiKey, setTinyFishApiKey] = useState(() => {
@@ -70,8 +76,16 @@ export default function App() {
     }
   };
 
-  // Run initial default scenario on load
+  const handleScrollToContent = () => {
+    const el = document.getElementById('platform-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Run initial default scenario on load and ensure top position for landing intro
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     executeSearch({
       query_text: "I need 5,000 food containers, under ₹20,000, delivered within seven days.",
       item_name: "Kraft Paper Food Containers (750ml)",
@@ -81,67 +95,77 @@ export default function App() {
       delivery_city: "New Delhi",
       category: "Packaging & Containers"
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="app-container">
-      <Header
-        onOpenSettings={() => setIsSettingsOpen(true)}
-        executionMode={procurementData?.execution_mode || 'simulation'}
-        isTinyFishConfigured={Boolean(tinyFishApiKey)}
+    <div className="site-wrapper">
+      {/* Full-screen 2D Stick Figure Animated Cartoon Movie */}
+      {showStory && (
+        <StickFigureStoryMovie onComplete={() => setShowStory(false)} />
+      )}
+
+      {/* 100vh Pure Landing Hero (No Header, Tagline & Rotating 3D Figure + Scroll CTA) */}
+      <Hero3DParcel 
+        onScrollDown={handleScrollToContent} 
+        onReplayStory={() => setShowStory(true)}
       />
 
-      {/* Hero Header */}
-      <section className="hero-section">
-        <div className="hero-pill">
-          <Sparkles size={14} />
-          <span>AI-Powered B2B Sourcing for Restaurants & Small Businesses</span>
-        </div>
-        <h1 className="hero-title">
-          Never Pay Advertised Prices. <br />
-          Find <span className="gradient-text">True Landed Costs</span> Instantly.
-        </h1>
-        <p className="hero-subtitle">
-          ProcureSaathi deploys autonomous <strong>TinyFish Web Agents</strong> to crawl live supplier catalogs, normalize hidden GST and freight charges, expose MOQ traps, and generate direct quotation links.
-        </p>
-      </section>
-
-      {/* Requirement Input Form */}
-      <RequirementForm
-        onSearch={executeSearch}
-        isLoading={isLoading}
-      />
-
-      {errorMsg && (
-        <div className="glass-panel" style={{ padding: '1rem 1.5rem', marginBottom: '2rem', borderColor: 'var(--rose-500)', background: 'rgba(244, 63, 94, 0.1)', display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#fca5a5' }}>
-          <AlertCircle size={20} />
-          <span>{errorMsg}</span>
-        </div>
-      )}
-
-      {/* Live Agent Telemetry Stream */}
-      {procurementData && (
-        <AgentTelemetry
-          steps={procurementData.agent_telemetry}
-          isLive={procurementData.execution_mode === 'tinyfish_live'}
-          executionMode={procurementData.execution_mode}
-          executionTime={procurementData.execution_time_seconds}
+      {/* Main Procurement Platform Suite (Revealed on Scroll Down) */}
+      <div id="platform-section" className="app-container platform-view">
+        <Header
+          onOpenSettings={() => setIsSettingsOpen(true)}
+          onOpenExplainer={() => setIsExplainerOpen(true)}
+          onOpenStory={() => setShowStory(true)}
+          executionMode={procurementData?.execution_mode || 'simulation'}
+          isTinyFishConfigured={Boolean(tinyFishApiKey)}
         />
-      )}
 
-      {/* Comparison Results */}
-      {procurementData && (
-        <ComparisonMatrix
-          offers={procurementData.offers}
-          marketBenchmark={procurementData.market_benchmark}
-          currentQuantity={procurementData.request_summary.quantity}
-          maxBudget={procurementData.request_summary.max_budget}
-          deliveryDaysLimit={procurementData.request_summary.delivery_days_limit}
-          onRecalculate={handleRecalculate}
-          onInspectOffer={(offer) => setInspectOffer(offer)}
-          onOpenRFQ={(offer) => setRfqOffer(offer)}
+
+        {/* Requirement Input Form */}
+        <RequirementForm
+          onSearch={executeSearch}
+          isLoading={isLoading}
         />
-      )}
+
+        {errorMsg && (
+          <div style={{ padding: '1rem 1.25rem', marginBottom: '2rem', borderRadius: '14px', border: '1px solid #111827', background: '#f3f4f6', display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#111827', fontSize: '0.88rem' }}>
+            <AlertCircle size={18} />
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
+        {/* Live Agent Telemetry Stream */}
+        {procurementData && (
+          <AgentTelemetry
+            steps={procurementData.agent_telemetry}
+            isLive={procurementData.execution_mode === 'tinyfish_live'}
+            executionMode={procurementData.execution_mode}
+            executionTime={procurementData.execution_time_seconds}
+          />
+        )}
+
+        {/* Comparison Results */}
+        {procurementData && (
+          <ComparisonMatrix
+            offers={procurementData.offers}
+            marketBenchmark={procurementData.market_benchmark}
+            currentQuantity={procurementData.request_summary.quantity}
+            maxBudget={procurementData.request_summary.max_budget}
+            deliveryDaysLimit={procurementData.request_summary.delivery_days_limit}
+            onRecalculate={handleRecalculate}
+            onInspectOffer={(offer) => setInspectOffer(offer)}
+            onOpenRFQ={(offer) => setRfqOffer(offer)}
+          />
+        )}
+
+        {/* Clean Minimalist Footer */}
+        <footer style={{ marginTop: '5rem', paddingTop: '2.5rem', borderTop: '1px solid var(--border-subtle)', textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+          <p>
+            ProcureSaathi • Transparent Wholesale Raw Materials & Handicrafts Procurement • Powered by TinyFish Web Platform
+          </p>
+        </footer>
+      </div>
 
       {/* Modals */}
       <CostBreakdownModal
@@ -163,12 +187,10 @@ export default function App() {
         onSaveApiKey={handleSaveApiKey}
       />
 
-      {/* Footer */}
-      <footer style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid var(--border-subtle)', textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-        <p>
-          ProcureSaathi • Built with 💚 for Small Businesses, Cloud Kitchens & Kirana Stores • Powered by <strong>TinyFish Web Agent Engine</strong>
-        </p>
-      </footer>
+      <HowItWorksModal
+        isOpen={isExplainerOpen}
+        onClose={() => setIsExplainerOpen(false)}
+      />
     </div>
   );
 }
