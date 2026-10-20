@@ -9,14 +9,16 @@
   --bg-secondary: #F3F4F6;      /* Refined soft gray */
   --bg-card: #FFFFFF;           /* Crisp chalk white */
   --bg-card-hover: #FFFFFF;
-  --bg-dark-forest: #111827;    /* Sleek deep charcoal / graphite */
-  --bg-dark-ink: #000000;       /* Jet black */
+  --bg-dark-forest: #071f17;    /* Sleek deep dark green */
+  --bg-dark-emerald: #061a14;   /* Deep luxury dark green canvas */
+  --bg-dark-surface: #0a291f;   /* Elevated dark green card/surface */
+  --bg-dark-ink: #04140f;       /* Deepest dark green shadow */
   
-  /* Modern High-End Monochrome Minimalist Palette (Black, White, Neutral Grays) */
+  /* Modern High-End Minimalist Palette with Emerald Accents */
   --accent-yellow: #111827;     /* Pure monochrome primary */
   --accent-sand: #F3F4F6;       /* Neutral pill background */
-  --accent-green: #111827;      /* Pure monochrome primary */
-  --accent-emerald: #111827;    /* Pure monochrome primary */
+  --accent-green: #071f17;      /* Dark green primary */
+  --accent-emerald: #10b981;    /* Vibrant emerald highlight */
 
   /* Borders & Dividers */
   --border-subtle: #E5E7EB;
@@ -220,7 +222,7 @@ a:hover {
 .site-wrapper {
   width: 100%;
   min-height: 100vh;
-  background: #000000;
+  background: #071f17;
 }
 
 /* =========================================================
@@ -231,7 +233,8 @@ a:hover {
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background: #000000;
+  background-color: #071f17;
+  background: radial-gradient(circle at 50% 25%, #0d3527 0%, #071f17 65%, #04140f 100%);
   color: #ffffff;
   overflow-x: hidden;
   overflow-y: visible;
@@ -248,9 +251,9 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(7, 31, 23, 0) 70%);
   pointer-events: none;
   z-index: 1;
 }
@@ -354,25 +357,25 @@ a:hover {
 
 /* Interactive Dynamic Demo Console */
 .hero-demo-console {
-  background: rgba(17, 24, 39, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 33, 25, 0.78);
+  border: 1px solid rgba(52, 211, 153, 0.22);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.08);
   transition: border-color 0.3s ease;
   margin-top: 0.5rem;
 }
 
 .hero-demo-console:hover {
-  border-color: rgba(255, 255, 255, 0.24);
+  border-color: rgba(52, 211, 153, 0.4);
 }
 
 /* Minimal Nike-Grade Step Tabs */
 .demo-tabs-bar {
   display: flex;
-  background: rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 18, 14, 0.55);
+  border-bottom: 1px solid rgba(52, 211, 153, 0.12);
 }
 
 .demo-tab-btn {
@@ -1913,33 +1916,35 @@ a:hover {
   font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 600;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #334155;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
 .comp-pill.mono {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-  color: #1e293b;
+  background: var(--bg-secondary);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .comp-pill.mono-dark {
   background: #fef2f2;
   border-color: #fecaca;
   color: #991b1b;
+  font-weight: 700;
 }
 
+/* Recommendation Reasoning Box */
 .reasoning-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-left: 3.5px solid #111827;
   border-radius: var(--radius-md);
   padding: 0.95rem 1.15rem;
   margin: 0.85rem 0 0.5rem;
   font-size: 0.82rem;
-  color: #334155;
+  color: var(--text-secondary);
   line-height: 1.55;
 }
 
@@ -1948,7 +1953,7 @@ a:hover {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 0.35rem;
 }
 
@@ -1983,8 +1988,8 @@ a:hover {
   justify-content: center;
   gap: 0.45rem;
   padding: 0.65rem 0.95rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -1995,7 +2000,7 @@ a:hover {
 }
 
 .btn-counter-offer:hover {
-  background: #f1f5f9;
+  background: #e2e8f0;
   border-color: #cbd5e1;
 }
 
@@ -2005,8 +2010,8 @@ a:hover {
   justify-content: center;
   gap: 0.4rem;
   padding: 0.65rem 0.95rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
   font-family: var(--font-body);
@@ -2017,11 +2022,10 @@ a:hover {
 }
 
 .btn-print-dossier:hover {
-  background: #f1f5f9;
+  background: #e2e8f0;
   color: var(--text-primary);
   border-color: #cbd5e1;
 }
-
 .btn-secondary {
   flex: 1;
   display: inline-flex;
@@ -3203,7 +3207,7 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #000000;
+  background: #071f17;
   color: #ffffff;
   overflow: hidden;
   display: flex;
@@ -3687,7 +3691,7 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: #000000;
+  background: #071f17;
   color: #ffffff;
   overflow: hidden;
   display: flex;
@@ -4169,7 +4173,8 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: #000000;
+  background-color: #071f17;
+  background: radial-gradient(circle at 50% 35%, #0d3527 0%, #071f17 65%, #04140f 100%);
   color: #ffffff;
   overflow: hidden;
   display: flex;
@@ -4186,7 +4191,7 @@ a:hover {
   pointer-events: none;
 }
 
-/* Top Header HUD - Pure Monochrome */
+/* Top Header HUD - Dark Green Glass */
 .cartoon-header-hud {
   position: relative;
   z-index: 20;
@@ -4194,9 +4199,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
+  background: rgba(7, 31, 23, 0.92);
+  border-bottom: 1px solid rgba(52, 211, 153, 0.16);
+  backdrop-filter: blur(14px);
 }
 
 .hud-title-group {
@@ -4299,11 +4304,11 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  background: #0d0d0d;
-  border: 1px solid #ffffff;
+  background: #092a1f;
+  border: 1px solid rgba(52, 211, 153, 0.45);
   border-radius: 100px;
   padding: 0.85rem 1.85rem;
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.95);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(16, 185, 129, 0.18);
   z-index: 30;
   animation: bannerPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   max-width: 820px;
@@ -4379,9 +4384,9 @@ a:hover {
   position: relative;
   z-index: 20;
   padding: 0.75rem 2.5rem 1.35rem 2.5rem;
-  background: rgba(0, 0, 0, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
+  background: rgba(7, 31, 23, 0.92);
+  border-top: 1px solid rgba(52, 211, 153, 0.16);
+  backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   gap: 0.65rem;

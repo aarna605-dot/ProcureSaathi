@@ -25,13 +25,58 @@ import {
 
 const QUICK_VOLUMES = [1000, 2500, 5000, 10000, 20000];
 
-const PACKAGING_IMAGES = [
-  "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=600&auto=format&fit=crop&q=80"
-];
+const CATEGORY_FALLBACK_IMAGES = {
+  packaging: [
+    "https://images.unsplash.com/photo-1578496781985-452d4a934d50?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=600&auto=format&fit=crop&q=80"
+  ],
+  brass: [
+    "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80"
+  ],
+  textile: [
+    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&auto=format&fit=crop&q=80"
+  ],
+  wood: [
+    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop&q=80"
+  ],
+  ceramic: [
+    "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=600&auto=format&fit=crop&q=80"
+  ]
+};
+
+function getProductFallbackImage(offer, idx) {
+  if (offer?.product_image) return offer.product_image;
+  const title = (offer?.product_title || "").toLowerCase();
+  const cat = (offer?.category || "").toLowerCase();
+
+  if (title.includes("brass") || title.includes("hardware") || cat.includes("brass")) {
+    const list = CATEGORY_FALLBACK_IMAGES.brass;
+    return list[idx % list.length];
+  }
+  if (title.includes("cotton") || title.includes("canvas") || title.includes("fabric") || cat.includes("textile")) {
+    const list = CATEGORY_FALLBACK_IMAGES.textile;
+    return list[idx % list.length];
+  }
+  if (title.includes("wood") || title.includes("timber") || title.includes("sheesham") || cat.includes("wood")) {
+    const list = CATEGORY_FALLBACK_IMAGES.wood;
+    return list[idx % list.length];
+  }
+  if (title.includes("ceramic") || title.includes("mug") || title.includes("cup") || cat.includes("ceramic")) {
+    const list = CATEGORY_FALLBACK_IMAGES.ceramic;
+    return list[idx % list.length];
+  }
+
+  const list = CATEGORY_FALLBACK_IMAGES.packaging;
+  return list[idx % list.length];
+}
 
 export default function ComparisonMatrix({ 
   offers = [], 
@@ -527,7 +572,22 @@ export default function ComparisonMatrix({
           const isTopRank = offer.rank === 1 || (sortBy === 'recommended' && idx === 0);
           const { cost_breakdown: cb } = offer;
           const isTrap = offer.moq > currentQuantity;
-          const imgSrc = offer.product_image || PACKAGING_IMAGES[idx % PACKAGING_IMAGES.length];
+          const imgSrc = getProductFallbackImage(offer, idx);
+
+          // Kinetic Circular Typography Stamp - dynamically reflects offer audit status
+          let stampText = '• VERIFIED LANDED COST • AUDITED RATE • 2026 •';
+          let coreIcon = '✓';
+          if (isTopRank) {
+            stampText = '• VERIFIED LANDED COST • BEST VALUE • 2026 •';
+            coreIcon = '★';
+          } else if (offer.recommendation_badge) {
+            stampText = `• VERIFIED LANDED COST • ${offer.recommendation_badge.toUpperCase()} • 2026 •`;
+            const bLower = offer.recommendation_badge.toLowerCase();
+            coreIcon = bLower.includes('fast') ? '⚡' : bLower.includes('eco') ? '🍃' : '★';
+          } else if (isTrap) {
+            stampText = '• MOQ HURDLE DETECTED • HIGH VOLUME REQUIRED •';
+            coreIcon = '!';
+          }
 
           // Donut wheel cost proportions
           const totalCost = cb.total_landed_cost || 1;
@@ -563,8 +623,8 @@ export default function ComparisonMatrix({
                 />
                 <div className="product-photo-gradient-overlay" />
 
-                {/* Kinetic Circular Typography Stamp (Nike / Streetwear Spinning Seal) */}
-                <div className="spinning-wheel-stamp" title="ProcureSaathi Verified Landed Cost">
+                {/* Kinetic Circular Typography Stamp - dynamically reflects offer status */}
+                <div className="spinning-wheel-stamp" title={`ProcureSaathi Audit: ${offer.recommendation_badge || (isTopRank ? 'Best Value' : 'Verified Landed Cost')}`}>
                   <svg viewBox="0 0 100 100" className="wheel-svg">
                     <path
                       id={`circlePath-${offer.id}`}
@@ -573,12 +633,12 @@ export default function ComparisonMatrix({
                     />
                     <text className="wheel-text">
                       <textPath href={`#circlePath-${offer.id}`} startOffset="0%">
-                        • VERIFIED LANDED COST • BEST VALUE • 2026 •
+                        {stampText}
                       </textPath>
                     </text>
                   </svg>
                   <div className="wheel-center-core">
-                    <span className="wheel-core-star">★</span>
+                    <span className="wheel-core-star">{coreIcon}</span>
                   </div>
                 </div>
 

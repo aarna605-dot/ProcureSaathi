@@ -299,10 +299,10 @@ export default function StickFigureStoryMovie({ onComplete }) {
               <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
             </linearGradient>
 
-            {/* Subtle Monochrome Ambient Spotlight */}
+            {/* Subtle Emerald Ambient Spotlight */}
             <radialGradient id="monoAmbientSpot" cx="30%" cy="30%" r="70%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.04" />
-              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+              <stop offset="0%" stopColor="#34d399" stopOpacity="0.09" />
+              <stop offset="100%" stopColor="#071f17" stopOpacity="0" />
             </radialGradient>
 
             {/* Subtle Contact Blur Filter */}
@@ -311,18 +311,18 @@ export default function StickFigureStoryMovie({ onComplete }) {
             </filter>
           </defs>
 
-          {/* Deep Black Architectural Background */}
-          <rect x="0" y="0" width="1200" height="580" fill="#000000" />
+          {/* Deep Dark Green Architectural Background */}
+          <rect x="0" y="0" width="1200" height="580" fill="#071f17" />
           
           {/* Subtle Ambient Overhead Spot */}
           <circle cx="340" cy="280" r="320" fill="url(#monoAmbientSpot)" />
 
           {/* Clean Floor Horizon Hairline */}
-          <line x1="40" y1="460" x2="1160" y2="460" stroke="#27272a" strokeWidth="1.5" />
+          <line x1="40" y1="460" x2="1160" y2="460" stroke="#143e2f" strokeWidth="1.5" />
 
           {/* Minimalist Architectural Wall Frame (Ramesh Workshop Blueprint) */}
           <g opacity="0.6">
-            <rect x="80" y="140" width="110" height="85" fill="#09090b" stroke="#27272a" strokeWidth="1" rx="2" />
+            <rect x="80" y="140" width="110" height="85" fill="#09281e" stroke="#1b4d3b" strokeWidth="1" rx="2" />
             <line x1="95" y1="165" x2="175" y2="165" stroke="#3f3f46" strokeWidth="1" strokeDasharray="3 3" />
             <line x1="95" y1="185" x2="155" y2="185" stroke="#3f3f46" strokeWidth="1" strokeDasharray="3 3" />
             <line x1="95" y1="205" x2="165" y2="205" stroke="#3f3f46" strokeWidth="1" strokeDasharray="3 3" />
@@ -332,7 +332,7 @@ export default function StickFigureStoryMovie({ onComplete }) {
           </g>
 
           {/* Minimalist Wooden Drafting Workbench */}
-          <rect x="180" y="380" width="160" height="80" fill="#0d0d0d" stroke="#27272a" strokeWidth="1.5" rx="2" />
+          <rect x="180" y="380" width="160" height="80" fill="#09281e" stroke="#1b4d3b" strokeWidth="1.5" rx="2" />
           <line x1="175" y1="380" x2="345" y2="380" stroke="#52525b" strokeWidth="2" />
           
           {/* Minimal Line Art Telephone on Desk */}

@@ -104,6 +104,7 @@ async def search_and_evaluate(
             "max_budget": request.max_budget,
             "delivery_days_limit": request.delivery_days_limit,
             "delivery_city": request.delivery_city,
+            "category": request.category,
             "query_text": request.query_text
         },
         offers=evaluated_offers,
@@ -128,7 +129,12 @@ async def recalculate_costs(req: RecalculateRequest):
         delivery_city=req.delivery_city,
         category=req.category
     )
-    raw_pool = get_raw_supplier_pool(req.category)
+    raw_pool = get_raw_supplier_pool(
+        category=req.category,
+        item_name=req.item_name,
+        quantity=req.quantity,
+        budget=req.max_budget
+    )
     evaluated_offers, benchmark = evaluate_and_rank_offers(raw_pool, mock_req)
     return {
         "offers": evaluated_offers,

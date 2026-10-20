@@ -59,7 +59,7 @@ export default function App() {
         delivery_days_limit: summary.delivery_days_limit,
         item_name: summary.item_name,
         delivery_city: summary.delivery_city,
-        category: "Packaging & Containers"
+        category: summary.category || "Packaging & Containers"
       });
 
       setProcurementData((prev) => ({
