@@ -20,9 +20,9 @@ export async function searchProcurement(requestData, customApiKey = '') {
     if (response.ok) {
       return await response.json();
     }
-    console.warn(`[ProcureSaathi API] Backend returned HTTP ${response.status}. Engaging client procurement intelligence engine.`);
+    console.warn(`[ScoutB2B API] Backend returned HTTP ${response.status}. Engaging client procurement intelligence engine.`);
   } catch (err) {
-    console.warn(`[ProcureSaathi API] Backend unreachable (${err.message}). Engaging client procurement intelligence engine.`);
+    console.warn(`[ScoutB2B API] Backend unreachable (${err.message}). Engaging client procurement intelligence engine.`);
   }
 
   // Graceful client simulation fallback for Netlify, Vercel, offline, or when backend is unavailable
@@ -41,7 +41,7 @@ export async function parseQuery(queryText) {
       return await response.json();
     }
   } catch (err) {
-    console.warn("[ProcureSaathi API] Parse endpoint notice:", err.message);
+    console.warn("[ScoutB2B API] Parse endpoint notice:", err.message);
   }
 
   return parseQueryClient(queryText);
@@ -59,7 +59,7 @@ export async function recalculateCosts(params) {
       return await response.json();
     }
   } catch (err) {
-    console.warn("[ProcureSaathi API] Recalculate endpoint notice:", err.message);
+    console.warn("[ScoutB2B API] Recalculate endpoint notice:", err.message);
   }
 
   return recalculateCostsClient(params);
@@ -74,5 +74,5 @@ export async function checkBackendHealth() {
   } catch (err) {
     // Offline / static host
   }
-  return { status: 'client_active', service: 'ProcureSaathi Autonomous Intelligence' };
+  return { status: 'client_active', service: 'ScoutB2B Autonomous Intelligence' };
 }

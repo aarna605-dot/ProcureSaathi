@@ -743,7 +743,7 @@ export default function StickFigureStoryMovie({ onComplete }) {
           <div className="cartoon-solution-banner">
             <div className="solution-callout">
               <span className="solution-pill">THE SOLUTION EXISTS</span>
-              <h2 className="solution-heading">PROCURESAATHI B2B TRUTH ENGINE</h2>
+              <h2 className="solution-heading">SCOUTB2B SUPPLIER DISCOVERY</h2>
               <p className="solution-sub">Autonomous AI audit of ex-factory rates, guaranteed freight, and zero hidden taxes.</p>
             </div>
             <button 

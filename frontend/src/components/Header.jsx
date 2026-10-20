@@ -10,19 +10,7 @@ export default function Header({ onOpenSettings, onOpenExplainer, onOpenStory, e
         </div>
         <div>
           <div className="brand-name">
-            ProcureSaathi
-            <span style={{ 
-              fontSize: '0.7rem', 
-              background: '#f3f4f6', 
-              color: '#374151', 
-              padding: '0.2rem 0.65rem', 
-              borderRadius: '9999px', 
-              border: '1px solid #e5e7eb', 
-              fontWeight: 600,
-              letterSpacing: '0.02em'
-            }}>
-              प्रोक्योर साथी
-            </span>
+            ScoutB2B
           </div>
           <div className="brand-tagline">
             Transparent wholesale raw materials & packaging procurement

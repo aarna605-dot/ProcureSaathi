@@ -248,7 +248,7 @@ export function evaluateOffers(rawSuppliers, request) {
     }
 
     const cleanPhone = (raw.contact_phone || '919811234567').replace(/[^0-9]/g, '');
-    const rfqText = `Hi ${raw.supplier_name}, I am looking to procure ${qty.toLocaleString()} units of ${raw.product_title}. Please share your best delivery quote to ${request.delivery_city || 'New Delhi'}. Reference: ProcureSaathi Verified Lead.`;
+    const rfqText = `Hi ${raw.supplier_name}, I am looking to procure ${qty.toLocaleString()} units of ${raw.product_title}. Please share your best delivery quote to ${request.delivery_city || 'New Delhi'}. Reference: ScoutB2B Verified Lead.`;
 
     return {
       id: raw.id,
@@ -856,7 +856,7 @@ export async function runLiveTinyFishClient(req, apiKey) {
     };
   } catch (err) {
     clearTimeout(timeoutId);
-    console.warn(`[ProcureSaathi] Live agent connection notice: ${err.message}. Seamlessly engaging instant intelligence engine.`);
+    console.warn(`[ScoutB2B] Live agent connection notice: ${err.message}. Seamlessly engaging instant intelligence engine.`);
     throw err;
   }
 }

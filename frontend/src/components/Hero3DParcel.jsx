@@ -26,7 +26,7 @@ const DEMO_STAGES = [
     tag: 'WHAT IT DOES',
     tagType: 'neutral',
     title: 'Autonomous Multi-Tier Audit',
-    desc: 'ProcureSaathi deploys AI agents to dissect supplier contracts, locate hidden freight tariffs, and cross-reference artisan guild benchmarks in real time.',
+    desc: 'ScoutB2B deploys AI agents to examine supplier listings, surface freight terms, and compare wholesale offers.',
     stats: [
       { label: 'Markets Scanned', val: '3 Major Guilds', strike: false, color: 'primary', highlight: 'Moradabad' },
       { label: 'MOQ Verified', val: 'Under 5,000 units safe', strike: false, color: 'primary' },
@@ -92,7 +92,7 @@ export default function Hero3DParcel({ onScrollDown, onReplayStory }) {
       {/* Sleek Minimal Top Navigation */}
       <header className="hero-top-bar">
         <div className="hero-brand">
-          <span>PROCURESAATHI</span>
+          <span>SCOUTB2B</span>
           <span className="hero-brand-badge">B2B TRUTH ENGINE</span>
         </div>
         <div className="hero-top-right-group">

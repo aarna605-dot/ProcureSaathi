@@ -17,7 +17,7 @@ export default function HowItWorksModal({ isOpen, onClose }) {
         <div className="modal-header">
           <div>
             <span style={{ fontSize: '0.74rem', color: '#059669', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.06em' }}>
-              ProcureSaathi Intelligence Guide
+              ScoutB2B Intelligence Guide
             </span>
             <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '0.2rem' }}>
               How TinyFish Powers True Landed Cost
@@ -30,7 +30,7 @@ export default function HowItWorksModal({ isOpen, onClose }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-            Traditional B2B directories like IndiaMART and Moglix display deceptively low headline prices. Small restaurants and cloud kitchens routinely lose <strong>15% to 30% of their operational budget</strong> to hidden fees. ProcureSaathi autonomously uncovers these 4 traps:
+            Traditional B2B directories like IndiaMART and Moglix can display low headline prices that omit costs. ScoutB2B helps buyers compare the landed cost and supplier terms before requesting a quote:
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.85rem' }}>

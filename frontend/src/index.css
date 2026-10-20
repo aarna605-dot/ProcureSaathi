@@ -1742,6 +1742,34 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.semantic-matching-note {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #d9e3d4;
+  border-radius: 9px;
+  background: #f1f5ee;
+  color: #49634b;
+  font-size: 0.78rem;
+}
+
+.semantic-matching-unavailable {
+  border-color: #e8dfd1;
+  background: #faf6ef;
+  color: #766b5d;
+}
+
+.semantic-match-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #d9e3d4;
+  border-radius: var(--radius-full);
+  background: #f1f5ee;
+  color: #55765c;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
 .domain-pill {
   font-family: var(--font-body);
   font-size: 0.74rem;

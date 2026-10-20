@@ -38,6 +38,7 @@ export default function App() {
   const executeSearch = async (params) => {
     setIsLoading(true);
     setErrorMsg(null);
+    setProcurementData(null);
     try {
       const result = await searchProcurement(params, tinyFishApiKey);
       setProcurementData(result);
@@ -58,6 +59,7 @@ export default function App() {
         max_budget: summary.max_budget,
         delivery_days_limit: summary.delivery_days_limit,
         item_name: summary.item_name,
+        query_text: summary.query_text,
         delivery_city: summary.delivery_city,
         category: summary.category || "Packaging & Containers"
       });
@@ -83,19 +85,9 @@ export default function App() {
     }
   };
 
-  // Run initial default scenario on load and ensure top position for landing intro
+  // Keep the landing intro at the top; supplier results only load after form submission.
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    executeSearch({
-      query_text: "I need 5,000 food containers, under ₹20,000, delivered within seven days.",
-      item_name: "Kraft Paper Food Containers (750ml)",
-      quantity: 5000,
-      max_budget: 20000,
-      delivery_days_limit: 7,
-      delivery_city: "New Delhi",
-      category: "Packaging & Containers"
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -162,7 +154,7 @@ export default function App() {
         {/* Clean Minimalist Footer */}
         <footer style={{ marginTop: '5rem', paddingTop: '2.5rem', borderTop: '1px solid var(--border-subtle)', textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           <p>
-            ProcureSaathi • Transparent Wholesale Raw Materials & Handicrafts Procurement • Powered by TinyFish Web Platform
+            ScoutB2B • Transparent wholesale supplier discovery • Powered by TinyFish Web Platform
           </p>
         </footer>
       </div>

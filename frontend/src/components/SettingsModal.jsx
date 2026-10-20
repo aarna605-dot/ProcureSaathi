@@ -58,7 +58,7 @@ export default function SettingsModal({ isOpen, onClose, currentApiKey, onSaveAp
               <Key size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
             </div>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.45rem', lineHeight: 1.45 }}>
-              ProcureSaathi connects directly to <code>api.search.tinyfish.ai</code> and <code>api.fetch.tinyfish.ai</code>. If empty, the system runs in high-fidelity B2B simulation mode so demos never break.
+              ScoutB2B connects to <code>api.search.tinyfish.ai</code> and <code>api.fetch.tinyfish.ai</code>. If no key is configured, the system runs in B2B simulation mode.
             </p>
           </div>
 

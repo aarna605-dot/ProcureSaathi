@@ -202,6 +202,8 @@ export default function ComparisonMatrix({
 
   if (!offers || offers.length === 0) return null;
 
+  const firstSemanticOffer = offers.find((offer) => offer.semantic_similarity != null);
+
   const handleSliderChange = (e) => {
     const val = Number(e.target.value);
     setSliderQty(val);
@@ -216,7 +218,7 @@ export default function ComparisonMatrix({
 
   const handlePrintDossier = (offerToPrint) => {
     const orig = document.title;
-    document.title = `ProcureSaathi_Quotation_Dossier_${offerToPrint ? offerToPrint.supplier_name.replace(/\s+/g, '_') : 'Comparison'}`;
+    document.title = `ScoutB2B_Quotation_Dossier_${offerToPrint ? offerToPrint.supplier_name.replace(/\s+/g, '_') : 'Comparison'}`;
     window.print();
     setTimeout(() => {
       document.title = orig;
@@ -232,6 +234,11 @@ export default function ComparisonMatrix({
 
   return (
     <div style={{ marginTop: '2rem' }}>
+      <div className={`semantic-matching-note ${firstSemanticOffer ? '' : 'semantic-matching-unavailable'}`}>
+        {firstSemanticOffer
+          ? `Catalog relevance uses ${firstSemanticOffer.semantic_match_method === 'sentence-transformers/all-MiniLM-L6-v2' ? 'Sentence Transformer embeddings' : firstSemanticOffer.semantic_match_method}. Scores are cosine similarity, not probabilities.`
+          : 'Semantic matching is unavailable in browser preview mode. Start the backend to compare supplier listing descriptions.'}
+      </div>
       {/* Economic Value Banner (Monochrome Minimalist) */}
       <div className="metrics-banner">
         <div className="metric-card">
@@ -624,7 +631,7 @@ export default function ComparisonMatrix({
                 <div className="product-photo-gradient-overlay" />
 
                 {/* Kinetic Circular Typography Stamp - dynamically reflects offer status */}
-                <div className="spinning-wheel-stamp" title={`ProcureSaathi Audit: ${offer.recommendation_badge || (isTopRank ? 'Best Value' : 'Verified Landed Cost')}`}>
+                <div className="spinning-wheel-stamp" title={`ScoutB2B Audit: ${offer.recommendation_badge || (isTopRank ? 'Best Value' : 'Landed Cost')}`}>
                   <svg viewBox="0 0 100 100" className="wheel-svg">
                     <path
                       id={`circlePath-${offer.id}`}
@@ -655,6 +662,14 @@ export default function ComparisonMatrix({
                     </div>
                     <div className="supplier-meta-tags">
                       <span className="rating-badge">★ {offer.supplier_rating.toFixed(1)}</span>
+                      {offer.semantic_similarity != null && (
+                        <span
+                          className="semantic-match-tag"
+                          title={`Cosine similarity using ${offer.semantic_match_method || 'catalog matching'}`}
+                        >
+                          Similarity {Number(offer.semantic_similarity).toFixed(2)}
+                        </span>
+                      )}
                       {offer.verified_seller && (
                         <span className="seller-status-verified">
                           <ShieldCheck size={13} /> GST Verified
