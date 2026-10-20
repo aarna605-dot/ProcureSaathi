@@ -24,4 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-src/services/clientSimulation.js
+

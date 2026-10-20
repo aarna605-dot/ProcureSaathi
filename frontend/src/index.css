@@ -1152,6 +1152,46 @@ a:hover {
   transform: scale(1.03);
 }
 
+
+/* =========================================================
+   REAL-TIME ENTITY RECOGNITION (NLP PREVIEW HUD)
+   ========================================================= */
+.nlp-entities-preview {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.95rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  margin-top: 1.15rem;
+}
+
+.nlp-entity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: #334155;
+  font-family: var(--font-body);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.nlp-entity-tag.highlight {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+}
+
+.nlp-entity-tag.highlight strong {
+  color: #ffffff;
+}
+
 .prompt-action-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -1541,8 +1581,8 @@ a:hover {
 .product-image-stage {
   position: relative;
   width: 100%;
-  height: 210px;
-  max-height: 210px;
+  height: 185px;
+  max-height: 185px;
   background: #f3f4f6;
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
@@ -1852,6 +1892,136 @@ a:hover {
   justify-content: space-between;
   color: var(--text-secondary);
 }
+
+/* =========================================================
+   COMPLIANCE TAGS & REASONING BOX STYLES
+   ========================================================= */
+.compliance-tags-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0.85rem;
+}
+
+.comp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.comp-pill.mono {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.comp-pill.mono-dark {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.reasoning-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3.5px solid #111827;
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.15rem;
+  margin: 0.85rem 0 0.5rem;
+  font-size: 0.82rem;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.reasoning-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+/* Unified Spacious Card Footer */
+.card-footer-actions {
+  padding: 1.15rem 1.6rem 1.4rem;
+  background: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.card-actions-primary-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.card-actions-secondary-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.btn-counter-offer {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.95rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-counter-offer:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.btn-print-dossier {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.95rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-print-dossier:hover {
+  background: #f1f5f9;
+  color: var(--text-primary);
+  border-color: #cbd5e1;
+}
+
 .btn-secondary {
   flex: 1;
   display: inline-flex;
@@ -2722,8 +2892,8 @@ a:hover {
 .dial-3d-stage {
   position: relative;
   width: 100%;
-  height: 940px;
-  min-height: 940px;
+  height: 1020px;
+  min-height: 1020px;
   perspective: 1400px;
   perspective-origin: center 25%;
   overflow: visible;
@@ -2739,8 +2909,8 @@ a:hover {
   top: 0;
   left: 50%;
   width: 100%;
-  max-width: 500px;
-  margin-left: -250px;
+  max-width: 520px;
+  margin-left: -260px;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
   transform-style: preserve-3d;
   will-change: transform, opacity;

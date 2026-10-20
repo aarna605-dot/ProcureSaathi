@@ -737,53 +737,53 @@ export default function ComparisonMatrix({
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="card-actions-row">
-                <button
-                  type="button"
-                  id={`btn-inspect-${offer.id}`}
-                  className="btn-secondary"
-                  onClick={() => onInspectOffer(offer)}
-                  title="Inspect landed cost waterfall & live scraped evidence"
-                >
-                  <Info size={14} />
-                  <span>Inspect evidence</span>
-                </button>
+              {/* Unified Spacious Card Footer */}
+              <div className="card-footer-actions">
+                <div className="card-actions-primary-row">
+                  <button
+                    type="button"
+                    id={`btn-rfq-${offer.id}`}
+                    className="btn-whatsapp"
+                    onClick={() => onOpenRFQ(offer)}
+                    title="Generate 1-click WhatsApp RFQ quotation"
+                  >
+                    <MessageSquare size={15} />
+                    <span>Contact on WhatsApp</span>
+                  </button>
 
-                <button
-                  type="button"
-                  id={`btn-rfq-${offer.id}`}
-                  className="btn-whatsapp"
-                  onClick={() => onOpenRFQ(offer)}
-                  title="Generate 1-click WhatsApp RFQ quotation"
-                >
-                  <MessageSquare size={14} />
-                  <span>Contact on WhatsApp</span>
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    id={`btn-inspect-${offer.id}`}
+                    className="btn-secondary"
+                    onClick={() => onInspectOffer(offer)}
+                    title="Inspect landed cost waterfall & live scraped evidence"
+                  >
+                    <Info size={14} />
+                    <span>Evidence</span>
+                  </button>
+                </div>
 
-              {/* Secondary Power Action Row: Counter-Offer Script & Print Dossier */}
-              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', width: '100%' }}>
-                <button
-                  type="button"
-                  className="btn-counter-offer"
-                  style={{ flex: 1, justifyContent: 'center' }}
-                  onClick={() => setNegotiatingOffer(offer)}
-                  title="Generate a strategic data-backed counter-offer"
-                >
-                  <HandCoins size={13} color="#059669" />
-                  <span>Negotiate Quote</span>
-                </button>
+                <div className="card-actions-secondary-row">
+                  <button
+                    type="button"
+                    className="btn-counter-offer"
+                    onClick={() => setNegotiatingOffer(offer)}
+                    title="Generate a strategic data-backed counter-offer"
+                  >
+                    <HandCoins size={13} color="#059669" />
+                    <span>Negotiate Quote</span>
+                  </button>
 
-                <button
-                  type="button"
-                  className="btn-print-dossier"
-                  onClick={() => handlePrintDossier(offer)}
-                  title="Print formal B2B quotation dossier"
-                >
-                  <Printer size={13} />
-                  <span>Dossier</span>
-                </button>
+                  <button
+                    type="button"
+                    className="btn-print-dossier"
+                    onClick={() => handlePrintDossier(offer)}
+                    title="Print formal B2B quotation dossier"
+                  >
+                    <Printer size={13} />
+                    <span>Dossier</span>
+                  </button>
+                </div>
               </div>
             </div>
           );

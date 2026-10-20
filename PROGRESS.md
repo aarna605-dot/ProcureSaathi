@@ -19,6 +19,7 @@ This document maintains an accurate, chronological record of all architectural d
 | **M9: Comparison Matrix & Cost Modal**| Ranked cards, evidence drawer, interactive quantity recalculation | ✅ Complete |
 | **M10: End-to-End Verification** | Real testing with restaurant packaging case study (5,000 containers) | ✅ Complete |
 | **M11: Monochrome Minimalist UI & Story Movie** | Studio-grade minimalist monochrome aesthetic, 2D stick-figure movie, 3D rotary dial, resale simulator | ✅ Complete |
+| **M12: Netlify Deployment & Layout Refinements** | Spacious card footers, distinct compliance pills, NLP parameter HUD, client simulation fallback for static hosts | ✅ Complete |
 
 ---
 
@@ -46,7 +47,12 @@ This document maintains an accurate, chronological record of all architectural d
 - **Exploratory Modals & Architectural Hardening**:
   - Added `HowItWorksModal.jsx` providing intuitive 4-step workflow guidance.
   - Upgraded `RequirementForm.jsx` with instant intent extraction across product category, target quantity, budget ceiling, and delivery lead times.
-  - Updated `frontend/.gitignore` to strictly isolate local crawler simulation files (`src/services/clientSimulation.js`).
+- **Layout Spacing, Card Refinements & Static Deployment Readiness**:
+  - Re-architected rotary supplier cards with dedicated `.card-footer-actions` preventing button clipping and adding generous bottom padding.
+  - Fixed compliance tags (`.compliance-tags-row` and `.comp-pill`) ensuring delivery lead times and MOQ specifications are separated into distinct badges.
+  - Styled real-time entity recognition HUD (`.nlp-entities-preview` and `.nlp-entity-tag`) displaying extracted procurement constraints as interactive pills.
+  - Balanced product tile photo height (185px) and expanded 3D rotary stage height (1020px) for unclipped card rotation.
+  - Integrated client-side autonomous intelligence fallback into `frontend/src/services/api.js` and `clientSimulation.js` enabling full static deployments (Netlify, Vercel) with zero 404 errors when backend is offline.
 
 ### [v1.0.0] - 2026-10-17
 #### Added

@@ -181,7 +181,8 @@ ProcureSaathi/
         │   ├── RFQModal.jsx         # 1-click WhatsApp/Email inquiry modal
         │   └── SettingsModal.jsx    # TinyFish API key configuration modal
         └── services/
-            └── api.js          # API client for backend communication
+            ├── api.js              # API client for backend communication with static host fallback
+            └── clientSimulation.js # Offline & static host simulation engine for zero-downtime demos
 ```
 
 ---
