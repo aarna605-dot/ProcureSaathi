@@ -161,7 +161,39 @@ npm run dev
 
 ---
 
-## 🧪 7. Running Tests
+## ☁️ 7. Deploying to Render (Zero Friction & Free Tier)
+
+This repository includes a multi-stage `Dockerfile` and `render.yaml` blueprint to run the **FastAPI backend and React frontend together on a single free Render Web Service**.
+
+### Option A: Automatic 1-Click Blueprint (Recommended)
+1. Fork or push this repository to GitHub: `https://github.com/aarna605-dot/ScoutB2B`.
+2. Log into [Render Dashboard](https://dashboard.render.com).
+3. Click **New +** > **Blueprint**.
+4. Connect the `ScoutB2B` repository.
+5. Render reads `render.yaml` automatically:
+   - Sets **Environment** to `Docker`
+   - Sets Health Check to `/api/health`
+   - Prompts for `TINYFISH_API_KEY` (optional; leave blank to use mock fallback)
+6. Click **Apply**. Render builds the frontend, sets up FastAPI, and provides your live public HTTPS URL!
+
+### Option B: Manual Web Service Setup
+If not using Blueprints:
+1. In Render Dashboard, click **New +** > **Web Service**.
+2. Select your GitHub repository (`ScoutB2B`).
+3. Choose **Docker** as the Runtime / Environment.
+4. Set:
+   - **Branch**: `main`
+   - **Dockerfile Path**: `./Dockerfile`
+   - **Instance Type**: `Free`
+5. Under **Environment Variables**, add:
+   - `ENABLE_MOCK_FALLBACK`: `true`
+   - `TINYFISH_API_KEY`: *(your TinyFish key, optional)*
+6. Click **Create Web Service**.
+
+---
+
+
+## 🧪 8. Running Tests
 
 Run the backend test suite:
 ```bash
@@ -176,7 +208,8 @@ tests\test_procure.py .....                                 [100%]
 
 ---
 
-## 🤝 8. Future Roadmap & LLM Contribution Guide
+## 🤝 9. Future Roadmap & LLM Contribution Guide
+
 
 If you or another AI assistant want to expand this repository:
 1. **Read `PROJECT_CONTEXT.md` first**: Contains the full architectural specifications, data models, and cost formulas.

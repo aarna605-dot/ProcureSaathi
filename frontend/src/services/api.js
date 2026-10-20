@@ -1,6 +1,7 @@
 import { runClientSimulation, recalculateCostsClient, parseQueryClient } from './clientSimulation';
 
-const API_BASE_URL = '';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
 
 export async function searchProcurement(requestData, customApiKey = '') {
   try {

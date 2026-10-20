@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: scoutb2b
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENABLE_MOCK_FALLBACK
+        value: "true"
+      - key: TINYFISH_API_KEY
+        sync: false

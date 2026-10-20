@@ -1,7 +1,10 @@
 import time
+from pathlib import Path
 from typing import Dict, Any, Optional
 from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from config import TINYFISH_API_KEY, BACKEND_HOST, BACKEND_PORT, get_tinyfish_api_key
@@ -146,6 +149,26 @@ async def get_catalog():
     """Returns the full raw catalog of verified B2B suppliers."""
     return {"catalog": get_raw_supplier_pool()}
 
+# Serve built frontend static assets if available (unified fullstack deployment)
+DIST_DIR = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if not DIST_DIR.exists():
+    alt_dist = Path(__file__).resolve().parent / "dist"
+    if alt_dist.exists():
+        DIST_DIR = alt_dist
+
+if DIST_DIR.exists() and (DIST_DIR / "index.html").exists():
+    assets_dir = DIST_DIR / "assets"
+    if assets_dir.exists():
+        app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str):
+        requested_file = DIST_DIR / full_path
+        if full_path and requested_file.is_file():
+            return FileResponse(str(requested_file))
+        return FileResponse(str(DIST_DIR / "index.html"))
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host=BACKEND_HOST, port=BACKEND_PORT, reload=True)
+
