@@ -390,7 +390,7 @@ export default function ComparisonMatrix({
       {/* Section Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
-          <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.3 }}>
             Verified Supplier Rankings
           </h3>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
@@ -942,7 +942,7 @@ export default function ComparisonMatrix({
       {/* Side-by-Side Deep Matrix Table */}
       <div className="glass-panel" style={{ padding: '1.75rem', marginBottom: '2.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+          <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
             <Building2 size={18} color="var(--text-primary)" />
             <span>Side-by-Side Verification Matrix</span>
           </h4>

@@ -2,13 +2,13 @@ import time
 import httpx
 from datetime import datetime
 from typing import List, Dict, Any, Tuple
-from config import TINYFISH_API_KEY, TINYFISH_SEARCH_URL, TINYFISH_FETCH_URL, ENABLE_MOCK_FALLBACK
+from config import TINYFISH_API_KEY, TINYFISH_SEARCH_URL, TINYFISH_FETCH_URL, ENABLE_MOCK_FALLBACK, get_tinyfish_api_key
 from models.procurement import ProcurementRequest, AgentLogStep
 from services.mock_suppliers import get_raw_supplier_pool
 
 class TinyFishService:
     def __init__(self, api_key: str = ""):
-        self.api_key = api_key or TINYFISH_API_KEY
+        self.api_key = api_key or get_tinyfish_api_key() or TINYFISH_API_KEY
         self.search_url = TINYFISH_SEARCH_URL
         self.fetch_url = TINYFISH_FETCH_URL
         self.enable_fallback = ENABLE_MOCK_FALLBACK

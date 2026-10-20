@@ -268,7 +268,7 @@ export default function RequirementForm({ onSearch, isLoading }) {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <Sparkles size={16} color="var(--text-primary)" />
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.005em' }}>
               Supplier Search Brief
             </h2>
           </div>

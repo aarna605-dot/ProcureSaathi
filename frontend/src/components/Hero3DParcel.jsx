@@ -61,12 +61,12 @@ export default function Hero3DParcel({ onScrollDown, onReplayStory }) {
   const [activeStep, setActiveStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-advance demo stages every 5.5 seconds unless user hovers
+  // Auto-advance demo stages every 11 seconds (relaxed reading pace) unless user hovers
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % DEMO_STAGES.length);
-    }, 5500);
+    }, 11000);
     return () => clearInterval(timer);
   }, [isPaused]);
 
@@ -150,7 +150,16 @@ export default function Hero3DParcel({ onScrollDown, onReplayStory }) {
                   >
                     <span className="tab-num">{stg.stepNumber}</span>
                     <span className="tab-title">{stg.tabLabel}</span>
-                    {isActive && <div className="tab-progress-line" key={`prog-${activeStep}-${isPaused}`} />}
+                    {isActive && (
+                      <div 
+                        className="tab-progress-line" 
+                        key={`prog-${activeStep}-${isPaused}`} 
+                        style={{ 
+                          animationDuration: '11s',
+                          animationPlayState: isPaused ? 'paused' : 'running'
+                        }}
+                      />
+                    )}
                   </button>
                 );
               })}

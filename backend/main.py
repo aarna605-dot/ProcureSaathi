@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from config import TINYFISH_API_KEY, BACKEND_HOST, BACKEND_PORT
+from config import TINYFISH_API_KEY, BACKEND_HOST, BACKEND_PORT, get_tinyfish_api_key
 from models.procurement import ProcurementRequest, ProcurementResponse, QueryParseResult
 from services.nlp_parser import parse_procurement_query
 from services.tinyfish_service import TinyFishService
@@ -40,10 +40,11 @@ class RecalculateRequest(BaseModel):
 
 @app.get("/api/health")
 async def health_check():
+    key = get_tinyfish_api_key()
     return {
         "status": "healthy",
         "service": "ProcureSaathi API",
-        "tinyfish_configured": bool(TINYFISH_API_KEY),
+        "tinyfish_configured": bool(key),
         "timestamp": time.time()
     }
 
